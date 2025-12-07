@@ -1,0 +1,26 @@
+from reservas import *
+from datetime import datetime,date
+
+def main():
+    ruta = "./data/reservas.csv"
+    datos = lee_reservas(ruta)
+    #test_lee_reservas(ruta)
+    test_total_facturado(datos)
+
+def test_lee_reservas(ruta):
+    datos = lee_reservas(ruta)
+    print("TEST de lee_recetas")
+    print("Registros leidos : ", len(datos))
+    print("Mostrando los tres primeros",datos[:3])
+
+def test_total_facturado(datos):
+    fecha_ini = datetime.strptime("2022-2-1","%Y-%m-%d")
+    fecha_fin = datetime.strptime("2022-2-28","%Y-%m-%d")
+    print("TEST de total_facturado")
+    print("En todo el periodo de datos: ",total_facturado(datos,None,None))
+    print("Desde 1 de febrero de 2022 hasta 28 de febrero de 2022:",total_facturado(datos,fecha_ini,fecha_fin))
+    print("Desde 1 de febrero de 2022 (fecha final None):", total_facturado(datos,fecha_ini,None))
+    print("Hasta 28 de febrero de 2022 (fecha inicio None):",total_facturado(datos,None,fecha_ini))
+
+if __name__ == '__main__':
+    main()
